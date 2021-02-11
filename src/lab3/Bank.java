@@ -28,37 +28,64 @@ public class Bank {
     public String addCustomer(String arg1, double arg2){
         for(int i = 0; i < customerList.size(); i++){
             if(arg1.equals(customerList.get(i).getName())){
-                System.out.println("Customer already exists");
+                return "Customer already exists";
             }
+
             else{
-                customerList.add(new Customer(arg1));
-                accountList.add(new Account(accountNumber));
-                accountNumber = accountNumber + 1;
+                Customer tempBoy = new Customer(arg1);
+                customerList.add(tempBoy);
+                Current dummyCurrent = new Current(accountNumber, tempBoy, arg2);
+                Savings dummySavings = new Savings(accountNumber+1,dummyCurrent);
+                accountList.add(dummyCurrent);
+                accountList.add(dummySavings);
+                tempBoy.addAccounts(dummyCurrent,dummySavings);
+                accountNumber = accountNumber +2;
+                return "Customer added";
             }
         }
-
-
-
-
-
-        return null; //fix later
+        return"";
     }
 
 
 
     public Customer findCustomer(String arg){
-        return null; //later
+        for(int i = 0; i < customerList.size(); i++){
+            if(arg.equals(customerList.get(i).getName())){
+                return customerList.get(i);
+            }
+            else{
+                System.out.println("Customer does not exist");
+                return null;
+            }
+        }
+        return null;
     }
 
 
-
+    /**
+     * sends money between accounts of single person
+     *
+     * @param arg1 = name
+     * @param arg2 = amount
+     */
     public void transfer(String arg1, double arg2){
+        Customer lonely = findCustomer(arg1);
 
     }
 
 
-    public void transfer(String arg1, String arg2, double arg3){
 
+
+    /**
+     * sends money between 'current' accounts of different people
+     *
+     * @param arg1 = senders name
+     * @param arg2 = receivers name
+     * @param arg3 = amount
+     */
+    public void transfer(String arg1, String arg2, double arg3){
+        Customer sender = findCustomer(arg1);
+        Customer receiver = findCustomer(arg2);
     }
 
     public String checkAccount(int arg){
