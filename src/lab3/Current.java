@@ -9,21 +9,47 @@ public class Current extends Account {
     private ArrayList<Transaction> theTransactions = new ArrayList<Transaction>();
 
 
-    //sub-class constructor
-    public Current(Customer theCustomer, double balance) {
-        super("Account"); //wrong, idk how to fix.pls send help.
+
+
+    /**
+     * sub-class constructor
+     *
+     * @param arg1 = accountNumber
+     * @param arg2 = theCustomer
+     * @param arg3 = balance
+     */
+    public Current(int arg1, Customer arg2, double arg3) {
+        super(arg1);
         ArrayList<Transaction> theTransactions = new ArrayList<Transaction>();
-        balance = super.getBalance();
-        theCustomer = super.
+        balance = arg3;
+        theCustomer = arg2;
     }
 
 
 
-    public Customer getTheCustomer() {
+    public Customer getCustomer(){
         return theCustomer;
     }
 
-    public void setTheCustomer(Customer theCustomer) {
-        this.theCustomer = theCustomer;
+
+    /**
+     * transfers money to the savings account (other Account).
+     * @param arg3 = balance
+     */
+    public void transfer(double arg3){
+        theCustomer.getCurrentAccount(); //not done, you probably want to remove this... dumbass.
     }
+
+
+
+    public void deposit(Current arg1, double arg2){
+
+    }
+
+
+
+    public String toString(){
+        return null; //fix later boyo
+    }
+
 }

@@ -1,5 +1,7 @@
 package lab3;
 
+import java.util.Random;
+
 public class Customer {
     private String name;
     private Current currentAccount;
@@ -7,9 +9,8 @@ public class Customer {
 
 
 
-    public Customer(String name) {
-        this.name = name;
-
+    public Customer(String arg1) {
+        name = arg1;
     }
 
 
@@ -25,10 +26,19 @@ public class Customer {
     }
 
 
+    /**
+     *
+     * @param arg1 = currentAccount
+     * @param arg2 = savingsAccount
+     */
 
-    public void addAccounts(Current currentAccount, Savings savingsAccount){
+
+    public void addAccounts(Current arg1, Savings arg2){
         //adds current account to currentAccount
+        currentAccount = arg1;
+
         //adds savings account to savingsAccount
+        savingsAccount = arg2;
     }
 
 
