@@ -33,22 +33,55 @@ public class Current extends Account {
 
 
     /**
-     * transfers money to the savings account (other Account).
+     * transfers money to the savingsAccount from currentAccount
+     * or the other way around
+     *
+     * If i implemented this at an actual bank i would go to prison.
+     * or a nice padded room with nice nurses giving me happy pills.
+     * since clearly i would be in no mental state to be out in the real world.
+     *
      * from currentAccount.
      * @param arg3 = balance
      */
-    public void transfer(double arg3){
+    public void transfer(double arg3) {
+
         double savingsCurrentAmount = otherAccount.balance;
         double currentCurrentAmount = theCustomer.getCurrentAccount().balance;
-        if(arg3 > currentCurrentAmount){
-            double newSum = arg3 - currentCurrentAmount;
-            otherAccount.balance += newSum;
-            theCustomer.getCurrentAccount().balance -= newSum;
+        int tempNumber = theCustomer.getCurrentAccount().getNumber();
 
-        }else{
-            theCustomer.getCurrentAccount().balance -= arg3;
-            otherAccount.balance += arg3;
-        }
+            //positive amount sent from currentAccount to savingsAccount -> money goes into savingsAccount from currentAccount
+            if(arg3 > 0.0) {
+                if (arg3 > currentCurrentAmount) {
+                    double newSum = arg3 - currentCurrentAmount;
+                    otherAccount.balance += newSum;
+                    theCustomer.getCurrentAccount().balance -= newSum;
+                    Transaction transaction = new Transaction(tempNumber, newSum, "from");
+
+                } else {
+                    theCustomer.getCurrentAccount().balance -= arg3;
+                    otherAccount.balance += arg3;
+                    Transaction transaction = new Transaction(tempNumber, arg3, "from");
+                }
+            }
+            else if(arg3 == 0.0){
+                System.out.println("You cant send 0.0, you dumb bitch");
+
+            }
+            //negative amount sent from currentAccount to savingsAccount -> money goes into currentAccount from savingsAccount
+            else {
+                if (-arg3 > currentCurrentAmount) {
+                    double newSum = -arg3 - currentCurrentAmount;
+                    otherAccount.balance += newSum;
+                    theCustomer.getCurrentAccount().balance -= newSum;
+                    Transaction transaction = new Transaction(tempNumber, newSum, "to");
+                }
+                else {
+                    theCustomer.getCurrentAccount().balance -= arg3;
+                    otherAccount.balance += arg3;
+                    Transaction transaction = new Transaction(tempNumber, arg3, "to");
+            }
+
+
 
     }
 
