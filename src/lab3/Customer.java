@@ -2,40 +2,47 @@ package lab3;
 
 public class Customer {
     private String name;
-    private String CurrentAccount;
-    private String SavingsAccount;
+    private Current Current;
+    private Savings Savings;
 
-    public Customer(String name, String currentAccount, String savingsAccount) {
-        this.name = name;
-        CurrentAccount = currentAccount; // Current??
-        SavingsAccount = savingsAccount; // Savings??
+	/*
+	private String theName;
+	private Current theCurrentAccount;
+	*/
+
+    public Customer(String arg) {
+        name = arg;
+        Current = null;
     }
-
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+
+
+    public Current getCurrentAccount() {
+        return Current;
     }
 
-    public String getCurrentAccount() {
-        return CurrentAccount;
+    public void addAccounts Current arg1, Savings arg2) {
+        if (!hasCurrentAccount()) {
+            Current = arg1;
+            Savings = arg2;
+        }
     }
 
-    public void setCurrentAccount(String currentAccount) {
-        CurrentAccount = currentAccount;
-    }
 
-    public String getSavingsAccount() {
-        return SavingsAccount;
-    }
+    public String toString() {
+        String dummy = "";
+        dummy = dummy + "\n****************";
+        dummy = dummy + "\nName of Customer : " + name;
+        if (hasCurrentAccount()) {
+            dummy = dummy + "\n Current account : " + Current.getNumber();
+            dummy = dummy + "\n Savings account : " + Savings.getBalance();
+            dummy = dummy + "\n***************";
+        }
 
-    public void setSavingsAccount(String savingsAccount) {
-        SavingsAccount = savingsAccount;
+        return dummy;
     }
 }
-
-
-

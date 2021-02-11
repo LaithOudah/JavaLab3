@@ -1,6 +1,5 @@
 package lab3;
 
-import java.io.*;
 
 public class Main {
 

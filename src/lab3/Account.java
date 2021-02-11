@@ -1,79 +1,45 @@
 package lab3;
 
-import java.io.*;
-
 public class Account {
-    int accountNumber;
-    String accountType;
-    double balance;
-    Account otherAccount;
-    public double FEE, INTEREST;
 
-    // Constructor
-    public Account(int accountNumber, String accountType, double balance, Account otherAccount, double FEE, double INTEREST) {
-        this.accountNumber = accountNumber;
-        this.accountType = accountType;
-        this.balance = balance;
-        this.otherAccount = otherAccount;
-        this.FEE = FEE;
-        this.INTEREST = INTEREST;
+    protected int accountNumber;
+    protected String accountType;
+    protected double balance;
+    protected String otherAccount;
+    public static final double FEE = 10.0;
+    public static final double INTEREST = 0.02;
+
+
+    public Account(int arg1) {
+        accountNumber = arg1;
+        accountType = "Current";
     }
 
-    // Setter and getters
-    public int getAccountNumber() {
-        return accountNumber;
+    public Account(int arg2, String arg3) {
+        accountNumber = arg2;
+        otherAccount = arg3;
     }
 
-    public void setAccountNumber(int accountNumber) {
-        this.accountNumber = accountNumber;
-    }
 
     public String getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(String accountType) {
-        this.accountType = accountType;
+    public int getNumber() {
+        return accountNumber;
     }
 
     public double getBalance() {
         return balance;
     }
 
-    public void setBalance(double balance) {
-        this.balance = balance;
+    public void annualChange() {
+        if (accountType.equals("Current")) {
+            balance -= FEE;
+        } else {
+            balance += (balance * INTEREST);
+        }
     }
-
-    public Account getOtherAccount() {
-        return otherAccount;
-    }
-
-    public void setOtherAccount(Account otherAccount) {
-        this.otherAccount = otherAccount;
-    }
-
-    public double getFEE() {
-        return FEE;
-    }
-
-    public void setFEE(double FEE) {
-        this.FEE = FEE;
-    }
-
-    public double getINTEREST() {
-        return INTEREST;
-    }
-
-    public void setINTEREST(double INTEREST) {
-        this.INTEREST = INTEREST;
-    }
-
-
-
-
-
-
-
-
 
 }
+
