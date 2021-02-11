@@ -29,21 +29,19 @@ public class Bank {
         for(int i = 0; i < customerList.size(); i++){
             if(arg1.equals(customerList.get(i).getName())){
                 return "Customer already exists";
-            }
-
-            else{
-                Customer tempBoy = new Customer(arg1);
-                customerList.add(tempBoy);
-                Current dummyCurrent = new Current(accountNumber, tempBoy, arg2);
-                Savings dummySavings = new Savings(accountNumber+1,dummyCurrent);
-                accountList.add(dummyCurrent);
-                accountList.add(dummySavings);
-                tempBoy.addAccounts(dummyCurrent,dummySavings);
-                accountNumber = accountNumber +2;
-                return "Customer added";
+            } else{
+                i++;
             }
         }
-        return"";
+        Customer tempBoy = new Customer(arg1);
+        customerList.add(tempBoy);
+        Current dummyCurrent = new Current(accountNumber, tempBoy, arg2);
+        Savings dummySavings = new Savings(accountNumber+1,dummyCurrent);
+        accountList.add(dummyCurrent);
+        accountList.add(dummySavings);
+        tempBoy.addAccounts(dummyCurrent,dummySavings);
+        accountNumber = accountNumber +2;
+        return "Customer added";
     }
 
 
@@ -69,7 +67,7 @@ public class Bank {
      * @param arg2 = amount
      */
     public void transfer(String arg1, double arg2){
-        Customer lonely = findCustomer(arg1);
+        Customer lonelyBoy = findCustomer(arg1);
 
     }
 

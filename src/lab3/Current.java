@@ -34,11 +34,26 @@ public class Current extends Account {
 
     /**
      * transfers money to the savings account (other Account).
+     * from currentAccount.
      * @param arg3 = balance
      */
     public void transfer(double arg3){
-        theCustomer.getCurrentAccount(); //not done, you probably want to remove this... dumbass.
+        double savingsCurrentAmount = otherAccount.balance;
+        double currentCurrentAmount = theCustomer.getCurrentAccount().balance;
+        if(arg3 > currentCurrentAmount){
+            double newSum = arg3 - currentCurrentAmount;
+            otherAccount.balance += newSum;
+            theCustomer.getCurrentAccount().balance -= newSum;
+
+        }else{
+            theCustomer.getCurrentAccount().balance -= arg3;
+            otherAccount.balance += arg3;
+        }
+
     }
+
+
+
 
 
 
