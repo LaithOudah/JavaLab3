@@ -1,45 +1,43 @@
 package lab3;
 
-public class Account {
+import java.io.*;
 
+public class Account {
     protected int accountNumber;
     protected String accountType;
     protected double balance;
-    protected String otherAccount;
-    public static final double FEE = 10.0;
-    public static final double INTEREST = 0.02;
+    protected Account otherAccount;
+    public static final double FEE = 0, INTEREST = 0; //set FEE and INTEREST later.
 
-
-    public Account(int arg1) {
-        accountNumber = arg1;
+    // Constructor uno
+    public Account(int accountNumber) {
+        accountNumber = this.accountNumber;
         accountType = "Current";
     }
 
-    public Account(int arg2, String arg3) {
-        accountNumber = arg2;
-        otherAccount = arg3;
+    //constructor dos
+    public Account(int accountNumber, Current otherAccount){
+
     }
 
-
-    public String getAccountType() {
+    public String getAccountType(){
         return accountType;
     }
 
-    public int getNumber() {
+
+    public int getNumber(){
         return accountNumber;
     }
 
-    public double getBalance() {
+    public double getBalance(){
         return balance;
     }
 
-    public void annualChange() {
-        if (accountType.equals("Current")) {
-            balance -= FEE;
-        } else {
-            balance += (balance * INTEREST);
-        }
+
+    public void annualChange(){
+
     }
 
-}
 
+
+}

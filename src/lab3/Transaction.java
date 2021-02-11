@@ -1,18 +1,25 @@
 package lab3;
 
+import java.io.*;
+
 public class Transaction {
 
     private int theAccount;
     private double theAmount;
-    private String tofrom;
+    private String toFrom;
 
-    public Transaction(int theAccount, double theAmount, String tofrom) {
+    public Transaction(int theAccount, double theAmount, String toFrom) {
         this.theAccount = theAccount;
         this.theAmount = theAmount;
-        this.tofrom = tofrom;
+        this.toFrom = toFrom;
+
     }
 
-    public String toString() {
-        return "Money Transfer: " + tofrom + "\n Account: " + theAccount + "\n Amount " + theAmount + "\n";
+
+
+    public String toString(){
+        return null; //fix later
     }
+
+
 }
