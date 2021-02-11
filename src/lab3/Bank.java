@@ -10,8 +10,8 @@ public class Bank {
 
     //constructor
     public Bank(){
-        ArrayList<Customer> customerList = new ArrayList<Customer>();
-        ArrayList<Account> accountList = new ArrayList<Account>();
+        customerList = new ArrayList<Customer>();
+        accountList = new ArrayList<Account>();
         accountNumber = 1000;
     }
 

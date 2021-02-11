@@ -90,16 +90,29 @@ public class Current extends Account {
 
     /**
      * different account pays to this account
+     * this is your brain on java programming    https://www.youtube.com/watch?v=GOnENVylxPI
+     *
      *
      * @param arg1 = sender
      * @param arg2 = amount
      */
     public void deposit(Current arg1, double arg2){
-        accountNumber = arg1
+        Current sender = arg1;
+        if(arg2 > 0.0) {
+            sender.balance -= arg2;
+            theCustomer.getCurrentAccount().balance += arg2;
+            Transaction transaction = new Transaction(sender.accountNumber, arg2, "from");
+            theTransactions.add(transaction);
+        }
+        else{
+            System.out.println("dont try to send a negative amount you dirty dirty boy");
+        }
+   }
 
-    }
 
+   public void transfer(Current arg1, double arg2){
 
+   }
 
     public String toString(){
         return null; //fix later boyo

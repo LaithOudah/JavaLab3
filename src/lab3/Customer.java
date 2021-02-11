@@ -44,7 +44,7 @@ public class Customer {
 
 
     public String toString(){
-        return String.format(); //fix later
+        return String.format("digital super-aids"); //fix later
     }
 
 
