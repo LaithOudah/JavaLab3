@@ -40,7 +40,7 @@ public class Current extends Account {
      * or a nice padded room with nice nurses giving me happy pills.
      * since clearly i would be in no mental state to be out in the real world.
      *
-     * from currentAccount.
+     *
      * @param arg3 = balance
      */
     public void transfer(double arg3) {
@@ -49,48 +49,53 @@ public class Current extends Account {
         double currentCurrentAmount = theCustomer.getCurrentAccount().balance;
         int tempNumber = theCustomer.getCurrentAccount().getNumber();
 
-            //positive amount sent from currentAccount to savingsAccount -> money goes into savingsAccount from currentAccount
-            if(arg3 > 0.0) {
-                if (arg3 > currentCurrentAmount) {
-                    double newSum = arg3 - currentCurrentAmount;
-                    otherAccount.balance += newSum;
-                    theCustomer.getCurrentAccount().balance -= newSum;
-                    Transaction transaction = new Transaction(tempNumber, newSum, "from");
+        //positive amount sent from currentAccount to savingsAccount -> money goes into savingsAccount from currentAccount
+        if (arg3 > 0.0) {
+            if (arg3 > currentCurrentAmount) {
+                double newSum = arg3 - currentCurrentAmount;
+                otherAccount.balance += newSum;
+                theCustomer.getCurrentAccount().balance -= newSum;
+                Transaction transaction = new Transaction(tempNumber, newSum, "from");
+                theTransactions.add(transaction);
 
-                } else {
-                    theCustomer.getCurrentAccount().balance -= arg3;
-                    otherAccount.balance += arg3;
-                    Transaction transaction = new Transaction(tempNumber, arg3, "from");
-                }
+            } else {
+                theCustomer.getCurrentAccount().balance -= arg3;
+                otherAccount.balance += arg3;
+                Transaction transaction = new Transaction(tempNumber, arg3, "from");
+                theTransactions.add(transaction);
             }
-            else if(arg3 == 0.0){
-                System.out.println("You cant send 0.0, you dumb bitch");
+        }
+        else if (arg3 == 0.0) {
+            System.out.println("You cant send 0.0, you dumb bitch");
 
+        }
+        //negative amount sent from currentAccount to savingsAccount -> money goes into currentAccount from savingsAccount
+        else {
+            if (-arg3 > currentCurrentAmount) {
+                double newSum = -arg3 - currentCurrentAmount;
+                otherAccount.balance += newSum;
+                theCustomer.getCurrentAccount().balance -= newSum;
+                Transaction transaction = new Transaction(tempNumber, newSum, "to");
+                theTransactions.add(transaction);
+            } else {
+                theCustomer.getCurrentAccount().balance -= arg3;
+                otherAccount.balance += arg3;
+                Transaction transaction = new Transaction(tempNumber, arg3, "to");
+                theTransactions.add(transaction);
             }
-            //negative amount sent from currentAccount to savingsAccount -> money goes into currentAccount from savingsAccount
-            else {
-                if (-arg3 > currentCurrentAmount) {
-                    double newSum = -arg3 - currentCurrentAmount;
-                    otherAccount.balance += newSum;
-                    theCustomer.getCurrentAccount().balance -= newSum;
-                    Transaction transaction = new Transaction(tempNumber, newSum, "to");
-                }
-                else {
-                    theCustomer.getCurrentAccount().balance -= arg3;
-                    otherAccount.balance += arg3;
-                    Transaction transaction = new Transaction(tempNumber, arg3, "to");
-            }
-
-
+        }
 
     }
 
 
-
-
-
-
+    /**
+     * different account pays to this account
+     *
+     * @param arg1 = sender
+     * @param arg2 = amount
+     */
     public void deposit(Current arg1, double arg2){
+        accountNumber = arg1
 
     }
 
