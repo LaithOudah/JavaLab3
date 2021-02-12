@@ -1,0 +1,77 @@
+Customer added
+The customer already exists
+
+Customer does not exist
+
+Name of customer: Joel Svensson
+Current Account: 1000
+Savings Account: 1001
+----------------
+
+Customer: Joel Svensson
+Balance: 2000.0
+Savings: 0.0
+
+
+Customer: Joel Svensson
+Balance: 1750.0
+Savings: 250.0
+
+List of transactions
+Money Transfer:
+To the account number 1001 with the amount of 500.0
+From the account number 1001 with the amount of 250.0
+
+Customer added
+
+Customer does not exist
+Name of customer: Anneli Sund
+Current Account: 1002
+Savings Account: 1003
+----------------
+Customer does not exist
+Not a current account
+
+Customer: Anneli Sund
+Balance: 3250.0
+Savings: 0.0
+
+List of transactions
+Money Transfer:
+From the account number 1000 with the amount of 250.0
+
+Customer added
+
+Customer: Crazy Guy
+Balance: 25.0
+Savings: 0.0
+
+Customer does not exist
+Customer does not exist
+
+Customer: Crazy Guy
+Balance: 0.0
+Savings: 25.0
+
+List of transactions
+Money Transfer:
+To the account number 1005 with the amount of 25.0
+
+Customer does not exist
+Customer does not exist
+
+Customer: Crazy Guy
+Balance: 25.0
+Savings: 0.0
+
+List of transactions
+Money Transfer:
+To the account number 1005 with the amount of 25.0
+From the account number 1005 with the amount of 25.0
+
+
+Bank statistics
+----------------
+The bank has 3 customers
+The bank has 6 accounts
+The bank controls the total amount of: 5025.0
