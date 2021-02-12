@@ -1,121 +1,90 @@
 package lab3;
 
-import java.io.*;
 import java.util.ArrayList;
 
 public class Current extends Account {
 
     private Customer theCustomer;
-    private ArrayList<Transaction> theTransactions = new ArrayList<Transaction>();
-
-
-
+    private ArrayList<Transaction> theTransactions;
 
     /**
      * sub-class constructor
      *
-     * @param arg1 = accountNumber
-     * @param arg2 = theCustomer
-     * @param arg3 = balance
+     * @param name          = Customer
+     * @param accountNumber = AccountNumber
+     * @param money         = balance
      */
-    public Current(int arg1, Customer arg2, double arg3) {
-        super(arg1);
-        ArrayList<Transaction> theTransactions = new ArrayList<Transaction>();
-        balance = arg3;
-        theCustomer = arg2;
+    public Current(Customer name, int accountNumber, double money) {
+        super(accountNumber);
+
+        theCustomer = name;
+        balance = money;
+        theTransactions = new ArrayList<Transaction>();
     }
 
-
-
-    public Customer getCustomer(){
+    public Customer getCustomer() {
         return theCustomer;
     }
 
-
-    /**
-     * transfers money to the savingsAccount from currentAccount
-     * or the other way around
-     *
-     * If i implemented this at an actual bank i would go to prison.
-     * or a nice padded room with nice nurses giving me happy pills.
-     * since clearly i would be in no mental state to be out in the real world.
-     *
-     *
-     * @param arg3 = balance
-     */
-    public void transfer(double arg3) {
-
-        double savingsCurrentAmount = otherAccount.balance;
-        double currentCurrentAmount = theCustomer.getCurrentAccount().balance;
-        int tempNumber = theCustomer.getCurrentAccount().getNumber();
-
-        //positive amount sent from currentAccount to savingsAccount -> money goes into savingsAccount from currentAccount
-        if (arg3 > 0.0) {
-            if (arg3 > currentCurrentAmount) {
-                double newSum = arg3 - currentCurrentAmount;
-                otherAccount.balance += newSum;
-                theCustomer.getCurrentAccount().balance -= newSum;
-                Transaction transaction = new Transaction(tempNumber, newSum, "from");
-                theTransactions.add(transaction);
-
-            } else {
-                theCustomer.getCurrentAccount().balance -= arg3;
-                otherAccount.balance += arg3;
-                Transaction transaction = new Transaction(tempNumber, arg3, "from");
-                theTransactions.add(transaction);
+    public void transfer(double amount) {
+        if (amount != 0.0) {
+            if (amount > 0) {
+                balance -= amount;
+            }
+            if (amount < 0) {
+                // In order to not get negative numbers
+                balance += Math.abs(amount);
             }
         }
-        else if (arg3 == 0.0) {
-            System.out.println("You cant send 0.0, you dumb bitch");
-
+        int numbHolder = theCustomer.getCurrentAccount().otherAccount.getNumber();
+        if (amount < 0) {
+            theTransactions.add(new Transaction(numbHolder, amount, "From"));
+        } else {
+            theTransactions.add(new Transaction(numbHolder, amount, "To"));
         }
-        //negative amount sent from currentAccount to savingsAccount -> money goes into currentAccount from savingsAccount
-        else {
-            if (-arg3 > currentCurrentAmount) {
-                double newSum = -arg3 - currentCurrentAmount;
-                otherAccount.balance += newSum;
-                theCustomer.getCurrentAccount().balance -= newSum;
-                Transaction transaction = new Transaction(tempNumber, newSum, "to");
-                theTransactions.add(transaction);
-            } else {
-                theCustomer.getCurrentAccount().balance -= arg3;
-                otherAccount.balance += arg3;
-                Transaction transaction = new Transaction(tempNumber, arg3, "to");
-                theTransactions.add(transaction);
-            }
-        }
-
     }
 
 
     /**
-     * different account pays to this account
-     * this is your brain on java programming    https://www.youtube.com/watch?v=GOnENVylxPI
+     * Deposit Method
      *
-     *
-     * @param arg1 = sender
-     * @param arg2 = amount
+     * @param arg1 = currentAccount
+     * @param arg2 = balance
      */
-    public void deposit(Current arg1, double arg2){
-        Current sender = arg1;
-        if(arg2 > 0.0) {
-            sender.balance -= arg2;
-            theCustomer.getCurrentAccount().balance += arg2;
-            Transaction transaction = new Transaction(sender.accountNumber, arg2, "from");
-            theTransactions.add(transaction);
-        }
-        else{
-            System.out.println("dont try to send a negative amount you dirty dirty boy");
-        }
-   }
-
-
-   public void transfer(Current arg1, double arg2){
-
-   }
-
-    public String toString(){
-        return null; //fix later boyo
+    public void deposit(Current arg1, double arg2) {
+        balance -= arg2;
+        theTransactions.add(new Transaction(arg1.getNumber(), arg2, "To"));
     }
 
+    /**
+     * Transfer Method 2
+     *
+     * @param arg1 =
+     * @param arg2 =
+     */
+    public void transfer(Current arg1, double arg2) {
+        arg1.deposit(theCustomer.getCurrentAccount(), arg2);
+        theCustomer.getCurrentAccount().balance += arg2;
+        theTransactions.add(new Transaction(arg1.getNumber(), arg2, "From"));
+    }
+
+    /**
+     * toString Method
+     * .append means +=
+     *
+     * @return toString
+     */
+    public String toString() {
+        StringBuilder holder = new StringBuilder(("\nCustomer: " + theCustomer.getName()) + "\n");
+        holder.append("Balance: ").append(theCustomer.getCurrentAccount().getBalance()).append("\n");
+        holder.append("Savings: ").append(theCustomer.getCurrentAccount().otherAccount.getBalance()).append("\n");
+
+        if (theTransactions.size() != 0) {
+            holder.append("\nList of transactions" + "\nMoney Transfer: \n");
+            for (Transaction theTransaction : theTransactions) {
+                holder.append(theTransaction.toString());
+            }
+        }
+        return holder.toString().toString();
+    }
 }

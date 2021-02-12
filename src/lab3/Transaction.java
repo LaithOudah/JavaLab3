@@ -1,44 +1,26 @@
 package lab3;
 
-import java.io.*;
-
 public class Transaction {
 
     private int theAccount;
     private double theAmount;
-    private String toFrom;
+    private String tofrom;
 
 
     /**
-     *
      * @param arg1 = AccountNumber (sending or receiving money)
-     * @param arg2 = amount
-     * @param arg3 = sent "to" or received "from".
+     * @param arg2 = Amount
+     * @param arg3 = Sent "to" or received "From".
      */
     public Transaction(int arg1, double arg2, String arg3) {
         theAccount = arg1;
         theAmount = arg2;
-        toFrom = arg3;
-
-
-        //probably doesn't belong here, but dont tell it that.
-        if(arg3.equals("to")) {
-            //call function that subtracts money from "theAccount".
-        }
-        else if(arg3.equals("from")){
-            //call function that adds money to "theAccount".
-        }
-        else{
-            System.out.println("Invalid input!");
-        }
-
+        tofrom = arg3;
     }
 
-
-
-    public String toString(){
-        return null; //fix later
+    public String toString() {
+        String returner;
+        returner = tofrom + " the account number " + theAccount + " with the amount of " + Math.abs(theAmount) + "\n";
+        return returner;
     }
-
-
 }

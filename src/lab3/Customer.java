@@ -1,57 +1,47 @@
 package lab3;
 
-import java.util.Random;
-
 public class Customer {
     private String name;
     private Current currentAccount;
     private Savings savingsAccount;
 
-
-
-    public Customer(String arg1) {
-        name = arg1;
+    /**
+     * @param arg = Customer Name
+     */
+    public Customer(String arg) {
+        name = arg;
     }
-
-
 
     public String getName() {
         return name;
     }
 
-
-
-    public Current getCurrentAccount(){
+    public Current getCurrentAccount() {
         return currentAccount;
     }
 
+    public void addAccounts(Current cur, Savings sav) {
+        currentAccount = cur;
+        savingsAccount = sav;
+    }
 
     /**
+     * toString Method
      *
-     * @param arg1 = currentAccount
-     * @param arg2 = savingsAccount
+     * @return returns Customer information
      */
+    public String toString() {
 
+        String holder = "Name of customer: " +  name;
 
-    public void addAccounts(Current arg1, Savings arg2){
-        //adds current account to currentAccount
-        currentAccount = arg1;
+        if (currentAccount.getNumber() != 0) {
+            holder += "\nCurrent Account: " + currentAccount.getNumber();
+        }
 
-        //adds savings account to savingsAccount
-        savingsAccount = arg2;
+        if (savingsAccount.getNumber() != 0) {
+            holder += "\nSavings Account: " + savingsAccount.getNumber();
+        }
+
+        return holder + "\n----------------";
     }
-
-
-
-    public String toString(){
-        return String.format("digital super-aids"); //fix later
-    }
-
-
-
-
-
 }
-
-
-

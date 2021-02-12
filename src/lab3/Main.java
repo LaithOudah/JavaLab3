@@ -1,6 +1,5 @@
 package lab3;
 
-
 public class Main {
 
     public static void main(String[] args) {
@@ -34,8 +33,6 @@ public class Main {
         theBank.transfer("Crazy Guy", -100000.0);
         System.out.println(theBank.checkAccount(1004));
 
-
         System.out.println(theBank);
     }
-
 }

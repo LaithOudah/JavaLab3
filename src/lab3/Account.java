@@ -1,17 +1,15 @@
 package lab3;
 
-import java.io.*;
-
 public class Account {
-    protected int accountNumber = 0;
+
+    protected int accountNumber;
     protected String accountType;
     protected double balance;
     protected Account otherAccount;
     public static final double FEE = 10.0, INTEREST = 0.02;
 
-
     /**
-     * Constructor uno
+     * First Constructor
      *
      * @param arg1 = accountNumber
      */
@@ -20,43 +18,36 @@ public class Account {
         accountType = "Current";
     }
 
-
     /**
-     * constructor dos
+     * Second Constructor
      *
      * @param arg1 = accountNumber
      * @param arg2 = otherAccount
      */
-    public Account(int arg1, Current arg2){
+    public Account(int arg1, Current arg2) {
         accountType = "Savings";
         accountNumber = arg1;
         otherAccount = arg2;
     }
 
-    public String getAccountType(){
+    public String getAccountType() {
         return accountType;
     }
 
-
-    public int getNumber(){
+    public int getNumber() {
         return accountNumber;
     }
 
-    public double getBalance(){
+    public double getBalance() {
         return balance;
     }
 
-
-    public void annualChange(){
-       String tempType = accountType;
-       if(tempType.equals("Current")){
-           balance = balance - FEE;
-       }
-       else if(tempType.equals("Savings")){
-           balance = balance + INTEREST;
-       }
+    public void annualChange() {
+        if (accountType.equals("Current")) {
+            balance -= FEE;
+        } else {
+            balance += (balance * INTEREST);
+        }
     }
-
-
-
 }
+
